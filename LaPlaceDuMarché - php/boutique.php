@@ -2,7 +2,7 @@
 
     require_once('includes/header.php');
 
-    $select = $bdd->prepare("SELECT * FROM products1");
+    $select = $bdd->prepare("SELECT * FROM products");
     $select->execute();
 
     while($s=$select->fetch(PDO::FETCH_OBJ)){

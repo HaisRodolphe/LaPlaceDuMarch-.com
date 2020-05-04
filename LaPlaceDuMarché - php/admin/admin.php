@@ -41,7 +41,7 @@
                     $description=$_POST['description'];
                     $price=$_POST['price'];
 
-                    if($title&&$description&&$price){
+                    if($title && $description && $price){
 
     
                         //insertion des données
@@ -72,7 +72,7 @@
 
             }else if ($_GET['action']=='modifyanddelete'){ // Action de modification où de suppression
 
-                $select = $bdd->prepare("SELECT * FROM products1");
+                $select = $bdd->prepare("SELECT * FROM products");
                 $select->execute();
 
                 while($s=$select->fetch(PDO::FETCH_OBJ)){//tant que tu as des données à m afficher
@@ -89,7 +89,7 @@
 
                 $id=$_GET['id']; // id = id selectionner
 
-                $select = $bdd->prepare("SELECT * FROM products1 WHERE id=$id"); // Aller chercher l'information dans products
+                $select = $bdd->prepare("SELECT * FROM products WHERE id=$id"); // Aller chercher l'information dans products
                 $select->execute();
 
                 $data = $select->fetch(PDO::FETCH_OBJ);// Recuperation des données
@@ -104,34 +104,32 @@
                 // Action de modification
                 if(isset($post['submit'])){ //Quand j'appuie sur submit
 
-                    $data = [
-                        'title' => $title,
-                        'description' => $description,
-                        'price' => $price,
-                    ];
+                    // $data = [
+                    //     'title' => $title,
+                    //     'description' => $description,
+                    //     'price' => $price,
+                    // ];                    
 
-                    echo '<pre>';
-                    print_r($data); 
-                    echo'</pre>';
-                    die();
+                    //$udapte = "UPDATE products1 SET title=$title, description=$description, price=$price, WHERE id=$id";
+                    //$stmt= $pdo->prepare($sql);
+                    //$stmt->execute($data);                    
 
-                    $udapte = "UPDATE products1 SET title=$title, description=$description, price=$price, WHERE id=$id";
-                    $stmt= $pdo->prepare($sql);
-                    $stmt->execute($data);                    
-
-                    //$title=$_POST['title']; // Je modifie le titre
-                    //$description=$_POST['description']; // Je modifie la description
-                    //$price=$_POST['price']; // Je modifie le prix.
+                    $title=$_POST['title']; // Je modifie le titre
+                    $description=$_POST['description']; // Je modifie la description
+                    $price=$_POST['price']; // Je modifie le prix.
 
                     // Je mets à jour la base de donnée sélectionner.
-
+                    $sql = "UPDATE products SET title=?, description=?, price=? WHERE id=$id";
+                    $stmt= $pdo->prepare($sql);
+                    $stmt->execute([$title, $description, $price]);
                     //$req = $bdd->prepare("UPDATE products1 SET `title`='salade1',`description`='super',`price`='10' WHERE `id`=$id");
                     //if ($req->execute()) { 
                         //echo 'working';
                     //} else {
                         //echo 'not working';
                     //}
-                    //$update = $bdd->exec("UPDATE products SET title='$title' ,description='$description' ,price='$price' WHERE id=$id");
+
+                    //$update = $bdd->exec("UPDATE products SET title=$title, description=$description, price=$price WHERE id=$id");
                     //$udapte->execute();
 
                     //$requete = "UPDATE products ($title, $description, $price ) VALUES(?, ?, ?)";
@@ -141,11 +139,21 @@
                     //$req->execute();
 
                     //'nvtitle' => $nvtitle,'nvdescription' => $nvdescription,'nvprice' => $nvprice
+                    
+                    //test phpmyadmin
                     //UPDATE `products` SET `title`=[value-2],`description`=[value-3],`price`=[value-4] WHERE `id`=[$id]
 
-                    //'UPDATE products1 SET title="salad1", description="super", price=20 WHERE id=1'
+                    //'UPDATE products1 SET title="salad1", description="super", price=20 WHERE id=1' ok
 
                     //header('location: admin.php action=modifyanddelete');
+
+                    //$update = "UPDATE products SET title = ?, description = ?, price = ? WHERE id = ?";
+                    //$pdostmt = $bdd->prepare($update);
+                    //$pdostmt->bindParam(1, $title, PDO::PARAM_STR);
+                    //$pdostmt->bindParam(2, $description, PDO::PARAM_STR);
+                    //$pdostmt->bindParam(3, $price, PDO::PARAM_INT);
+                    //$pdostmt->bindParam(4, $id, PDO::PARAM_INT);
+                    //$pdostmt->execute();
                 }
 
 
