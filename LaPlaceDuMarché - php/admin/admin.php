@@ -12,6 +12,9 @@
 <a href="?action=add">Ajouter un produit</a>
 <a href="?action=modifyanddelete">Modifier / supprimer un produit</a><br/><br/>
 
+<a href="?action=add_category">Ajouter une categorie</a><br/><br/>
+<a href="?action=modifyanddelete_category">Modifier / supprimer une categorie </a><br/><br/>
+
 
 <?php
     // Connection à la base de donnée
@@ -36,7 +39,7 @@
 
                 // Test submit
                 if(isset($_POST['submit'])){
-
+                    //variables
                     $title = $_POST['title'];
                     $description = $_POST['description'];
                     $price = $_POST['price'];
@@ -112,11 +115,12 @@
 
                     if($title && $description && $price){
 
-    
+                        $category=$_POST['category'];
+                        
                         //insertion des données
                         //execute requette preparer
-                        $insert = $bdd->prepare('INSERT INTO products (title, description, price ) VALUES(?, ?, ?)');
-                        $insert->execute(array($title, $description, $price));
+                        $insert = $bdd->prepare("INSERT INTO products (title, description, price, category) VALUES(?, ?, ?, ?)");
+                        $insert->execute(array($title, $description, $price, $category));
 
                     }else{
 
@@ -134,6 +138,25 @@
                 <h3>Prix :</h3><input type="text" name="price" /><br /><br />
                 <h3>Image :</h3>
                 <input type="file" name="img" /><br /><br /> <!-- insert une image -->
+                <!-- Selection category dans la base de donnée--> 
+                <h3>Categorie :</h3><select name="category">
+
+                <?php $select=$bdd->query("SELECT * FROM category");
+
+                    while($s = $select->fetch(PDO::FETCH_OBJ)){
+
+                        ?>
+
+                        <option><?php echo $s->name; ?></option>
+
+                        <?php
+
+
+                    }
+
+                ?>
+                
+                </select><br /><br />
                 <input type="submit" name="submit" />
 
                 </form>
@@ -193,11 +216,35 @@
                 $delete = $bdd->prepare("DELETE FROM products WHERE id=?");
                 $delete->execute(array($id));
 
+            }else if($_GET['action']=='add_category'){
+
+                if(isset($_POST['submit'])){
+
+                    $name = $_POST['name'];
+
+                    if($name){
+
+                        $insert = $bdd->prepare("INSERT INTO category (name) VALUES(?)");
+                        $insert->execute(array($name));
+
+                    }
+                }
+                
+                ?>
+
+                <form action="" method="post">
+                <h3>Titre de la categorie :</h3><input type="texte" name="name"/><br/><br/>
+                <input type="submit" name="submit" value="Ajouter"/>
+                </form>
+
+                <?php
+
             }else{
 
                 die('Une erreur s\'est ptoduite.');
         
             }
+
         }else{
             
         }
