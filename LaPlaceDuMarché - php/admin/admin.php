@@ -206,7 +206,7 @@
                     $update=$bdd->prepare("UPDATE products SET title=?, description=?, price=? WHERE id=?"); // je prépare ma requéte et je la met à jours
                     $update->execute(array($title, $description, $price, $id)); // j'excute avec les nouvelles données
                     
-
+                    header('Location: admin.php?action=mofyanddelete');
                 
                 }
 
@@ -215,17 +215,22 @@
                 $id=$_GET['id'];
                 $delete = $bdd->prepare("DELETE FROM products WHERE id=?");
                 $delete->execute(array($id));
-
+            // Gestion des category    
+            //Ajout d'une category    
             }else if($_GET['action']=='add_category'){
 
                 if(isset($_POST['submit'])){
 
-                    $name = $_POST['name'];
+                    $name = $_POST['name']; //variable
 
                     if($name){
 
                         $insert = $bdd->prepare("INSERT INTO category (name) VALUES(?)");
                         $insert->execute(array($name));
+
+                    }else{
+
+                        echo'Veuillez remplir tous les champs';
 
                     }
                 }
@@ -238,6 +243,59 @@
                 </form>
 
                 <?php
+            //Suprimer ou modifier une category
+            }else if($_GET['action']=='modifyanddelete_category'){
+
+                $select = $bdd->prepare("SELECT * FROM category");
+                $select->execute();
+
+                while($s=$select->fetch(PDO::FETCH_OBJ)){//tant que tu as des données à m afficher
+
+                    echo $s->name;//afficher les articles et les liens pour supprimer ou modifier un article
+                    ?>
+                    <a href="?action=modify_category&amp;id=<?php echo $s->id; ?>">Modifier</a>
+                    <a href="?action=delete_category&amp;id=<?php echo $s->id; ?>">Supprimer</a><br/><br/>
+                    <?php
+
+                }
+
+            //Modifier une category
+            }else if($_GET['action']=='modify_category'){
+            
+                $id=$_GET['id']; // id = id selectionner
+
+                $select = $bdd->prepare("SELECT * FROM category WHERE id=$id"); // Aller chercher l'information dans products
+                $select->execute();
+
+                $data = $select->fetch(PDO::FETCH_OBJ);// Recuperation des données
+                ?>
+                <!-- Formulaire -->
+                <form action="" method="post">
+                <h3>Categorie produis :</h3><input value="<?php echo $data->name; ?>" type="text" name="name" />
+                <input type="submit" name="submit" value="modifier"/>
+                <?php
+                // Action de modification
+                if(isset($_POST['submit'])){ //Quand j'appuie sur submit
+                    // variable
+                    $id=$_GET['id']; // id = id selectionner
+                    $name=$_POST['name']; //variable
+
+
+                    //execute requette preparer
+                    $update=$bdd->prepare("UPDATE category SET name=? WHERE id=?"); // je prépare ma requéte et je la met à jours
+                    $update->execute(array($name, $id)); // j'excute avec les nouvelles données
+                    
+                    header('Location: admin.php?action=modifyanddelete_category');
+                
+                }
+            //Suprimer une category
+            }else if($_GET['action']=='delete_category'){    
+
+                $id=$_GET['id'];
+                $delete = $bdd->prepare("DELETE FROM category WHERE id=?");
+                $delete->execute(array($id));
+
+                header('Location: admin.php?action=modifyanddelete_category');
 
             }else{
 
@@ -246,6 +304,7 @@
             }
 
         }else{
+
             
         }
 
