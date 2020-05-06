@@ -13,10 +13,10 @@
           <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
           <div class="dropdown-menu" aria-labelledby="dropdown04">
             <a class="dropdown-item" href="../views/shop.php">Shop</a>
-            <a class="dropdown-item" href="wishlist.html">Wishlist</a>
-            <a class="dropdown-item" href="product-single.html">Single Product</a>
+            <a class="dropdown-item" href="../views/wishlist.php">Wishlist</a>
+            <a class="dropdown-item" href="../views/product-single.php">Single Product</a>
             <a class="dropdown-item" href="../views/cart.php">Cart</a>
-            <a class="dropdown-item" href="checkout.html">Checkout</a>
+            <a class="dropdown-item" href="../views/checkout.php">Checkout</a>
           </div>
         </li>
         <li class="nav-item"><a href="../views/about.php" class="nav-link">About</a></li>

@@ -189,7 +189,9 @@
         <div class="sidebar-box ftco-animate">
           <h3 class="heading">Recent Blog</h3>
           
-          <!-- TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... -->
+          <!-- 
+            TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... 
+          -->
           <div class="block-21 mb-4 d-flex">
             <a class="blog-img mr-4" style="background-image: url(../public/images/image_1.jpg);"></a>
             <div class="text">

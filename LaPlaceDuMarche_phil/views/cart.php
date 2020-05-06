@@ -24,7 +24,9 @@
 						    </thead>
 						    <tbody>
 									
-									<!-- TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... -->
+									<!-- 
+										TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... 
+									-->
 						      <tr class="text-center">
 						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 						        
@@ -138,6 +140,7 @@
 		<?php 
 			require '../templates/newsLetter_form.php';
 			require '../templates/footer_home.php';
+			require '../templates/footer_script.php'; 
 		?>
 
   <script>
