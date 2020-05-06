@@ -17,7 +17,7 @@
     // Connection à la base de donnée
     try{
 
-        $bdd = new PDO('mysql:host=localhost;dbname=laplacedumarche;charset=utf8', 'root', '',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));// les erreurs lanceront des exceptions
+        $bdd = new PDO('mysql:host=localhost;dbname=laplacedumarche', 'root', '',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));// les erreurs lanceront des exceptions
         $bdd->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER); // les noms de champs seront en caractéres minuscules
 
     }
@@ -37,18 +37,86 @@
                 // Test submit
                 if(isset($_POST['submit'])){
 
-                    $title=$_POST['title'];
-                    $description=$_POST['description'];
-                    $price=$_POST['price'];
+                    $title = $_POST['title'];
+                    $description = $_POST['description'];
+                    $price = $_POST['price'];
+
+                    // gestion insertion image
+                    $img = $_FILES['img']['name'];
+
+                    $img_tmp = $_FILES['img']['tmp_name'];
+
+                    if(!empty($img_tmp)){
+
+                        $image = explode('.' ,$img);
+
+                        $image_ext = end($image);
+
+                        //print_r($image_ext);
+
+                        if(in_array(strtolower($image_ext),array('png','jpg','jpeg'))===false){
+                            
+                            echo'Veuillez rentrer une image ayant pour extention : png, jpg ou jpeg';
+
+
+                        }else{
+                            // gestion Format image
+                            $image_size = getimagesize($img_tmp); 
+
+                            //print_r($image_size);
+
+                            if($image_size['mime']=='image/jpeg'){
+
+                                $image_src = imagecreatefromjpeg($img_tmp);
+
+                            }else if($image_size['mime']=='image/png'){
+
+                                $image_src = imagecreatefrompng($img_tmp);
+
+                            }else{
+
+                                $image_src = false;
+                                echo'Veuillez rentrer une image valide';
+                            }
+                            // gestion dimentionnement image
+                            if($image_src!==false){ 
+
+                                $image_width=200;
+
+                                if($image_size[0] == $image_width){
+
+                                    $image_finale = $image_src;
+
+                                }else{
+
+                                    $new_width[0] = $image_width;
+
+                                    $new_height[1] = 200;
+
+                                    $image_finale = imagecreatetruecolor($new_width[0],$new_height[1]);
+
+                                    imagecopyresampled($image_finale,$image_src,0,0,0,0,$new_width[0],$new_height[1],$image_size[0],$image_size[1]);
+
+                                }
+                                //Gestion d'injection image
+                                imagejpeg($image_finale, 'images/' .$title. '.jpg'); 
+                            }
+                        }
+
+
+                    }else{
+
+                        echo'Veuillez rentrer une image';
+
+                    }
 
                     if($title && $description && $price){
 
     
                         //insertion des données
-                        //$insert = $bdd->prepare("INSERT INTO products VALUES('$title','$description','$price')");
-                        //$insert->execute();
-                        $req = $bdd->prepare('INSERT INTO products1 (title, description, price ) VALUES(?, ?, ?)');
-                        $req->execute(array($_POST['title'], $_POST['description'], $_POST['price']));
+                        //execute requette preparer
+                        $insert = $bdd->prepare('INSERT INTO products (title, description, price ) VALUES(?, ?, ?)');
+                        $insert->execute(array($title, $description, $price));
 
                     }else{
 
@@ -60,10 +128,11 @@
 
             ?>
                 <!-- Formulaire -->
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                 <h3>Titre du produit :</h3><input type="text" name="title" />
                 <h3>Description du produit :</h3><textarea name="description"></textarea>
                 <h3>Prix :</h3><input type="text" name="price" /><br /><br />
+                <input type="file" name="img" /><br /><br /> <!-- insert une image -->
                 <input type="submit" name="submit" />
 
                 </form>
@@ -98,85 +167,43 @@
                 <form action="" method="post">
                 <h3>Titre du produit :</h3><input value="<?php echo $data->title; ?>" type="text" name="title" />
                 <h3>Description du produit :</h3><textarea name="description"><?php echo $data->description; ?></textarea>
-                <h3>Prix :</h3><input value="<?php echo $data->price; ?>" type="text" name="price" /><br /><br />
+                <h3>Prix :</h3><input value="<?php echo $data->price; ?>" type="text" name="price" /><br/><br/>
                 <input type="submit" name="submit" value="modifier"/>
                 <?php
                 // Action de modification
-                if(isset($post['submit'])){ //Quand j'appuie sur submit
+                if(isset($_POST['submit'])){ //Quand j'appuie sur submit
+                    // variable
+                    $id=$_GET['id'];//appel id
+                    $title=$_POST['title'];// poste dans le formulaire
+                    $description=$_POST['description'];// poste dans le formulaire
+                    $price=$_POST['price'];// poste dans le formulaire
 
-                    // $data = [
-                    //     'title' => $title,
-                    //     'description' => $description,
-                    //     'price' => $price,
-                    // ];                    
-
-                    //$udapte = "UPDATE products1 SET title=$title, description=$description, price=$price, WHERE id=$id";
-                    //$stmt= $pdo->prepare($sql);
-                    //$stmt->execute($data);                    
-
-                    $title=$_POST['title']; // Je modifie le titre
-                    $description=$_POST['description']; // Je modifie la description
-                    $price=$_POST['price']; // Je modifie le prix.
-
-                    // Je mets à jour la base de donnée sélectionner.
-                    $sql = "UPDATE products SET title=?, description=?, price=? WHERE id=$id";
-                    $stmt= $pdo->prepare($sql);
-                    $stmt->execute([$title, $description, $price]);
-                    //$req = $bdd->prepare("UPDATE products1 SET `title`='salade1',`description`='super',`price`='10' WHERE `id`=$id");
-                    //if ($req->execute()) { 
-                        //echo 'working';
-                    //} else {
-                        //echo 'not working';
-                    //}
-
-                    //$update = $bdd->exec("UPDATE products SET title=$title, description=$description, price=$price WHERE id=$id");
-                    //$udapte->execute();
-
-                    //$requete = "UPDATE products ($title, $description, $price ) VALUES(?, ?, ?)";
-                    //$mysqli->query($requete) or die ('Erreur '.$requete.' '.$mysqli->error());
+                    //execute requette preparer
+                    $update=$bdd->prepare("UPDATE products SET title=?, description=?, price=? WHERE id=?"); // je prépare ma requéte et je la met à jours
+                    $update->execute(array($title, $description, $price, $id)); // j'excute avec les nouvelles données
                     
-                    //$req = $bdd->prepare("UPDATE products SET title = $nvtitle, description = $nvdescription, price = $nvprice WHERE id = $id");
-                    //$req->execute();
 
-                    //'nvtitle' => $nvtitle,'nvdescription' => $nvdescription,'nvprice' => $nvprice
-                    
-                    //test phpmyadmin
-                    //UPDATE `products` SET `title`=[value-2],`description`=[value-3],`price`=[value-4] WHERE `id`=[$id]
-
-                    //'UPDATE products1 SET title="salad1", description="super", price=20 WHERE id=1' ok
-
-                    //header('location: admin.php action=modifyanddelete');
-
-                    //$update = "UPDATE products SET title = ?, description = ?, price = ? WHERE id = ?";
-                    //$pdostmt = $bdd->prepare($update);
-                    //$pdostmt->bindParam(1, $title, PDO::PARAM_STR);
-                    //$pdostmt->bindParam(2, $description, PDO::PARAM_STR);
-                    //$pdostmt->bindParam(3, $price, PDO::PARAM_INT);
-                    //$pdostmt->bindParam(4, $id, PDO::PARAM_INT);
-                    //$pdostmt->execute();
+                
                 }
-
 
             }else if ($_GET['action']=='delete'){ // action=delete 
                 
                 $id=$_GET['id'];
-                $delete = $bdd->prepare("DELETE FROM products1 WHERE id=$id");
-                $delete->execute();
+                $delete = $bdd->prepare("DELETE FROM products WHERE id=?");
+                $delete->execute(array($id));
 
             }else{
 
                 die('Une erreur s\'est ptoduite.');
         
             }
-
         }else{
             
         }
 
-    }else {
-
-    header('Location: ../index.php');
+    }else{
+            header('Location: ../index.php');
     }
-
+       
 ?>
 
