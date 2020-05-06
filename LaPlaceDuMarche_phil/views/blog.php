@@ -10,6 +10,7 @@
         <div class="row">
           <div class="col-lg-8 ftco-animate">
 						<div class="row">
+						
 							<!-- TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... -->
 							<div class="col-md-12 d-flex ftco-animate">
 		            <div class="blog-entry align-self-stretch d-md-flex">

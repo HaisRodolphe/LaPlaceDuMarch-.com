@@ -5,18 +5,18 @@
 >
 - nom de la Base de données : **`laplacedumarche`**
   >
-  - Nom d'utilisateur .. : _laplacedumarche_
-  - Mot de passe ....... : _rodo#phil28_
+  - Nom d'utilisateur .. : _laplacedumarche_ ou RodolpheH
+  - Mot de passe ....... : _rodo#phil28_     ou 1234
   >
 
 - tables : `Products` / `Fruits` / `Vegetables` / `Juices` / `Dry_products`
   >
-  - **`Products`** :
+  - **`products`** :
     >
     | Nom         | Type         | Interclassement    | Descriptions                             | Commentaires |
     | ----------- | ------------ | ------------------ | -----------------------------------------| -------------|
     | ID          | INT(11)      |                    | Non NULL - AUTO_INCREMENT - PRIMARY_KEY  |              |
-    | name        | VARCHAR(50)  | utf8mb4_general_ci | Non NULL                                 |              |
+    | title       | VARCHAR(50)  | utf8mb4_general_ci | Non NULL                                 |              |
     | description | VARCHAR(255) | utf8mb4_general_ci | Non NULL                                 |              |
     | price       | INT(11)      |                    |                                          |              |
 
