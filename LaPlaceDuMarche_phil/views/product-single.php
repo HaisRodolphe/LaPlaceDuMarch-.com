@@ -223,44 +223,9 @@
 	<?php 
 		require '../templates/newsLetter_form.php';
 		require '../templates/footer_home.php';
-		require '../templates/footer_script.php'; 		
+		require '../templates/footer_script.php'; 
+
+		require '../templates/quantityProduct.php';	
+	
+		 require '../templates/footerTagClosed.php'; 
 	?>
-
-  <script>
-		$(document).ready(function(){
-
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
-
-		          
-		            // Increment
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
-	</script>
-    
-<?php require '../templates/footerTagClosed.php'; ?>
