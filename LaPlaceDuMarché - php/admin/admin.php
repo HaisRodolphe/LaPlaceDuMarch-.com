@@ -132,6 +132,7 @@
                 <h3>Titre du produit :</h3><input type="text" name="title" />
                 <h3>Description du produit :</h3><textarea name="description"></textarea>
                 <h3>Prix :</h3><input type="text" name="price" /><br /><br />
+                <h3>Image :</h3>
                 <input type="file" name="img" /><br /><br /> <!-- insert une image -->
                 <input type="submit" name="submit" />
 
