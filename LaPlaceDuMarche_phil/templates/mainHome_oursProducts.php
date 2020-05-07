@@ -13,7 +13,10 @@
 
 <div class="container">
   <div class="row">
-
+    <!--
+      TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... 
+      Partie avec promo
+    -->
     <div class="col-md-6 col-lg-3 ftco-animate">
       <div class="product">
         <a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
@@ -43,7 +46,12 @@
         </div>
       </div>
     </div>
+    <!-- Fin de partie à dynamiser -->
     
+    <!--
+      TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... 
+      Partie sans promo
+    -->
     <div class="col-md-6 col-lg-3 ftco-animate">
       <div class="product">
         <a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
@@ -72,6 +80,7 @@
         </div>
       </div>						
     </div>
+    <!-- Fin de partie à dynamiser -->
     
     <div class="col-md-6 col-lg-3 ftco-animate">
       <div class="product">

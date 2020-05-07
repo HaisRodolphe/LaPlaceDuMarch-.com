@@ -54,7 +54,9 @@
         <div class="pt-5 mt-5">
           <h3 class="mb-5">6 Comments</h3>
           <ul class="comment-list">
-            <!-- TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... -->
+            <!--
+               TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... 
+            -->
             <li class="comment">
               <div class="vcard bio">
                 <img src="../public/images/person_1.jpg" alt="Image placeholder">

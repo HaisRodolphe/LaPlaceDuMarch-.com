@@ -11,7 +11,9 @@
           <div class="col-lg-8 ftco-animate">
 						<div class="row">
 						
-							<!-- TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... -->
+							<!--
+								 TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... 
+							-->
 							<div class="col-md-12 d-flex ftco-animate">
 		            <div class="blog-entry align-self-stretch d-md-flex">
 		              <a href="blog-single.php" class="block-20" style="background-image: url('../public/images/image_1.jpg');">
