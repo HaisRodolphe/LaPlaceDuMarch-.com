@@ -120,7 +120,7 @@
                         //insertion des données
                         //execute requette preparer
                         $insert = $bdd->prepare("INSERT INTO products (title, description, price, category) VALUES(?, ?, ?, ?)");
-                        $insert->execute(array($title, $description, $price, $category));
+                        $insert->execute(array($title, $description, $price, $category));// probleme
 
                     }else{
 
@@ -192,6 +192,22 @@
                 <h3>Titre du produit :</h3><input value="<?php echo $data->title; ?>" type="text" name="title" />
                 <h3>Description du produit :</h3><textarea name="description"><?php echo $data->description; ?></textarea>
                 <h3>Prix :</h3><input value="<?php echo $data->price; ?>" type="text" name="price" /><br/><br/>
+                <h3>Categorie :</h3><select name="category">
+
+                <?php $select=$bdd->query("SELECT * FROM category");
+
+                    while($s = $select->fetch(PDO::FETCH_OBJ)){
+
+                        ?>
+
+                        <option><?php echo $s->name; ?></option>
+
+                        <?php
+
+
+                    }
+
+                ?>
                 <input type="submit" name="submit" value="modifier"/>
                 <?php
                 // Action de modification
@@ -201,10 +217,11 @@
                     $title=$_POST['title'];// poste dans le formulaire
                     $description=$_POST['description'];// poste dans le formulaire
                     $price=$_POST['price'];// poste dans le formulaire
+                    $category=$_POST['category'];
 
                     //execute requette preparer
-                    $update=$bdd->prepare("UPDATE products SET title=?, description=?, price=? WHERE id=?"); // je prépare ma requéte et je la met à jours
-                    $update->execute(array($title, $description, $price, $id)); // j'excute avec les nouvelles données
+                    $update=$bdd->prepare("UPDATE products SET title=?, description=?, price=?, category=? WHERE id=?"); // je prépare ma requéte et je la met à jours
+                    $update->execute(array($title, $description, $price, $category, $id)); // j'excute avec les nouvelles données
                     
                     header('Location: admin.php?action=mofyanddelete');
                 
@@ -299,12 +316,13 @@
 
             }else{
 
-                die('Une erreur s\'est ptoduite.');
+                die('Modification produite OK.');
         
             }
 
         }else{
 
+            die('Une erreur s\'est produite.');
             
         }
 
