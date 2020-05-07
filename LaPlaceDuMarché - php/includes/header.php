@@ -101,7 +101,9 @@
 					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
-					<li class="nav-item"><a href="admin/index.php" class="nav-link">Connection</a></li>			
+					<li class="nav-item"><a href="admin/index.php" class="nav-link">Connection</a></li>
+					<li class="nav-item"><a href="conditions_generales_de_vente.php" class="nav-link">Conditions generales de vente</a></li>
+
 				</ul>
 			</div>
 		</div>
