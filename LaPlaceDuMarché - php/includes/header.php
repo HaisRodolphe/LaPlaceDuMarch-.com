@@ -89,6 +89,27 @@
 							aria-haspopup="true" aria-expanded="false">Shop</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
 							<a class="dropdown-item" href="shop.php">Shop</a>
+							<?php
+
+							$select = $bdd->query("SELECT * FROM category");
+											
+							while($s = $select->fetch(PDO::FETCH_OBJ)){
+
+								?>
+
+								<div class="row justify-content-center">
+									<div class="col-md-10 mb-5 text-center">
+										<ul class="product-category">	
+											<li><a class="text-left" href="?category=<?php echo $s->name;?>"><?php echo $s->name ?></a></li>
+										</ul>
+									</div>
+								</div>
+									
+								<?php
+
+							}
+
+							?>
 							<a class="dropdown-item" href="boutique1.php">Boutique1</a>
 							<a class="dropdown-item" href="wishlist.php">Wishlist</a>
 							<a class="dropdown-item" href="product-single.php">Single Product</a>
