@@ -1,8 +1,8 @@
 <?php 
-	require '../templates/doctype.php'; 
-	require '../templates/header.php';
-	require '../templates/navbar.php'; 
-	require '../templates/titleSlide_page.php';
+	require_once '../templates/doctype.php'; 
+	require_once '../templates/header.php';
+	require_once '../templates/navbar.php'; 
+	require_once '../templates/titleSlide_page.php';
 ?>
  
     <section class="ftco-section ftco-degree-bg">
@@ -12,111 +12,82 @@
 						<div class="row">
 						
 							<!--
-								 TODO Partie à dynamiser en PHP pour éviter la répition en html et taper du code html à l'infinie ... 
+								 TODO Partie à dynamiser en PHP pour éviter la répétition en html et taper du code html à l'infinie ... 
 							-->
-							<div class="col-md-12 d-flex ftco-animate">
-		            <div class="blog-entry align-self-stretch d-md-flex">
-		              <a href="blog-single.php" class="block-20" style="background-image: url('../public/images/image_1.jpg');">
-		              </a>
-		              <div class="text d-block pl-md-4">
-		              	<div class="meta mb-3">
-		                  <div><a href="#">July 20, 2019</a></div>
-		                  <div><a href="#">Admin</a></div>
-		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-		                </div>
-		                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-		                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-		                <p><a href="blog-single.php" class="btn btn-primary py-2 px-3">Read more</a></p>
-		              </div>
-		            </div>
-							</div>
-							<!-- Fin de partie à dynamiser -->
 
-		          <div class="col-md-12 d-flex ftco-animate">
-		            <div class="blog-entry align-self-stretch d-md-flex">
-		              <a href="blog-single.php" class="block-20" style="background-image: url('../public/images/image_2.jpg');">
-		              </a>
-		              <div class="text d-block pl-md-4">
-		              	<div class="meta mb-3">
-		                  <div><a href="#">July 20, 2019</a></div>
-		                  <div><a href="#">Admin</a></div>
-		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-		                </div>
-		                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-		                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-		                <p><a href="blog-single.php" class="btn btn-primary py-2 px-3">Read more</a></p>
-		              </div>
-		            </div>
-							</div>
-							
-		          <div class="col-md-12 d-flex ftco-animate">
-		            <div class="blog-entry align-self-stretch d-md-flex">
-		              <a href="blog-single.php" class="block-20" style="background-image: url('../public/images/image_3.jpg');">
-		              </a>
-		              <div class="text d-block pl-md-4">
-		              	<div class="meta mb-3">
-		                  <div><a href="#">July 20, 2019</a></div>
-		                  <div><a href="#">Admin</a></div>
-		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-		                </div>
-		                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-		                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-		                <p><a href="blog-single.php" class="btn btn-primary py-2 px-3">Read more</a></p>
-		              </div>
-		            </div>
-							</div>
-							
-		          <div class="col-md-12 d-flex ftco-animate">
-		            <div class="blog-entry align-self-stretch d-md-flex">
-		              <a href="blog-single.php" class="block-20" style="background-image: url('../public/images/image_4.jpg');">
-		              </a>
-		              <div class="text d-block pl-md-4">
-		              	<div class="meta mb-3">
-		                  <div><a href="#">July 20, 2019</a></div>
-		                  <div><a href="#">Admin</a></div>
-		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-		                </div>
-		                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-		                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-		                <p><a href="blog-single.php" class="btn btn-primary py-2 px-3">Read more</a></p>
-		              </div>
-		            </div>
-							</div>
-							
-		          <div class="col-md-12 d-flex ftco-animate">
-		            <div class="blog-entry align-self-stretch d-md-flex">
-		              <a href="blog-single.php" class="block-20" style="background-image: url('../public/images/image_5.jpg');">
-		              </a>
-		              <div class="text d-block pl-md-4">
-		              	<div class="meta mb-3">
-		                  <div><a href="#">July 20, 2019</a></div>
-		                  <div><a href="#">Admin</a></div>
-		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-		                </div>
-		                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-		                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-		                <p><a href="blog-single.php" class="btn btn-primary py-2 px-3">Read more</a></p>
-		              </div>
-		            </div>
-							</div>
-							
-		          <div class="col-md-12 d-flex ftco-animate">
-		            <div class="blog-entry align-self-stretch d-md-flex">
-		              <a href="blog-single.php" class="block-20" style="background-image: url('../public/images/image_6.jpg');">
-		              </a>
-		              <div class="text d-block pl-md-4">
-		              	<div class="meta mb-3">
-		                  <div><a href="#">July 20, 2019</a></div>
-		                  <div><a href="#">Admin</a></div>
-		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-		                </div>
-		                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-		                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-		                <p><a href="blog-single.php" class="btn btn-primary py-2 px-3">Read more</a></p>
-		              </div>
-		            </div>
-		          </div>
-						</div>
+							<?php
+
+								// 1° Se connecter à la Bdd
+								require_once '../inc/dbConnect.php';
+								
+								// 2° Accèder aux données en Bdd via une requête SQL de Selection
+								// DATE_FORMAT(champ en datetime, format de conversion) avec heure DATE_FORMAT(created_at, "%d/%m/%Y à %Hh%imin%ss")
+								function datasPostSelect($dbConnect){
+
+									/**
+									 * 	$reqPrepare = $dbConnect->prepare('SELECT title, content, DATE_FORMAT(created_at, "%d/%m/%Y") AS date_creat_fr, blog_pictures.picture
+									 *																 		 FROM blog_post
+									 *																     INNER JOIN blog_pictures 
+									 *																     ON blog_post.blog_picture_ID = blog_pictures.ID');
+									 *	$reqPrepare->execute();
+									 */
+					
+									$req = 'SELECT title, content, DATE_FORMAT(created_at, "%d/%m/%Y à %Hh%imin%ss") AS date_creat_fr, blog_pictures.name, blog_pictures.ext, blog_pictures.path
+													FROM blog_post
+													INNER JOIN blog_pictures 
+													ON blog_post.blog_picture_ID = blog_pictures.ID';								
+									$reqPrepare = $dbConnect->prepare($req);
+									$reqPrepare->execute();
+									return $reqPrepare->fetchAll(PDO::FETCH_ASSOC);
+
+								}
+
+								// 3° Traiter les données								
+								
+								$datasPost = datasPostSelect($dbConnect);									
+								
+								// if(isset($datasPost)){
+								// 	$postTitle = trim(htmlspecialchars($datasPost['title']));
+								// 	echo 'afficher le post';
+								// } else {
+								// 	echo 'ERROR 404';
+								// }									
+							?>
+
+							<?php foreach($datasPost AS $datasOnePost) : ?>
+
+							<?php
+								// https://www.php.net/manual/fr/control-structures.if.php
+								$postDatetimeCreatFr = (isset($datasOnePost)) ? trim(htmlspecialchars($datasOnePost['date_creat_fr'])) : 'ERROR_404';
+								$postContent = (isset($datasOnePost)) ? trim(htmlspecialchars($datasOnePost['content'])) : 'ERROR_404';
+								$postTitle = (isset($datasOnePost)) ? trim(htmlspecialchars($datasOnePost['title'])) : 'ERROR_404';
+								// image voir le CSS - url('../public/images/image_1.jpg')
+								$postPicture = (isset($datasOnePost)) ? trim(htmlspecialchars($datasOnePost['path'] . $datasOnePost['name'] . $datasOnePost['ext'])) : 'ERROR_404';									
+							?>
+
+								<div class="col-md-12 d-flex ftco-animate">
+									<div class="blog-entry align-self-stretch d-md-flex">
+
+										<a href="blog-single.php" class="block-20"><img src="<?= $postPicture ?>" alt=""/></a>
+										<div class="text d-block pl-md-4">
+											<div class="meta mb-3">
+												<!-- https://www.php.net/manual/fr/function.date.php  -  https://www.php.net/manual/fr/datetime.format.php -->
+												<time><a href="#"><?= 'Le ' . $postDatetimeCreatFr ?></a></time>
+												<div><a href="#">Admin</a></div>
+												<!-- TODO Ajouter un compteur de commentaire : 
+														 			Pour ce post incrémenter chaque commentaire le concernant
+												-->
+												<div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+											</div>
+											<h3 class="heading"><a href="#"><?= $postTitle ?></a></h3>
+											<p><?= mb_substr($postContent, 0, 100); ?> [. . .]</p>
+											<p><a href="blog-single.php" class="btn btn-primary py-2 px-3">Read more</a></p>
+										</div>
+									</div>
+								</div>									
+
+							<?php endforeach ; ?>								
+							<!-- Fin de partie à dynamiser -->		          
 
           </div> <!-- .col-md-8 -->
           <div class="col-lg-4 sidebar ftco-animate">
@@ -208,9 +179,9 @@
 		</section> <!-- .section -->
 
 <?php 
-	require '../templates/footer_page.php'; 
-	require '../templates/footer_script.php';
-	require '../templates/footerTagClosed.php';
+	require_once '../templates/footer_page.php'; 
+	require_once '../templates/footer_script.php';
+	require_once '../templates/footerTagClosed.php';
 ?>
 		
 
