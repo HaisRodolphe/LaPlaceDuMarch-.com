@@ -5,16 +5,19 @@
 ?>
 
 <link rel="stylesheet" href="../style/bootstrap.css" type="text/css">
-
-<h1>bienvenue, <?php echo $_SESSION['username']; ?></h1>
+<div style="text-align:center;">
+<h1>Bienvenue, <?php echo $_SESSION['username']; ?></h1>
 <br />
 <!--Test action=add-->
+
 <a href="?action=add">Ajouter un produit</a>
 <a href="?action=modifyanddelete">Modifier / supprimer un produit</a><br/><br/>
 
 <a href="?action=add_category">Ajouter une categorie</a><br/><br/>
 <a href="?action=modifyanddelete_category">Modifier / supprimer une categorie </a><br/><br/>
 
+<a href="?action=options">Options</a><br/><br/>
+</div>
 
 <?php
     // Connection à la base de donnée
@@ -114,13 +117,19 @@
                     }
 
                     if($title && $description && $price){
-
+                        //insertion des données dans products
                         $category=$_POST['category'];
+                        $weight=$_POST['weight'];
+
+                        $select = $bdd->query("SELECT price FROM weights WHERE name='$weight'");
+
+                        $s = $select->fetch(PDO::FETCH_OBJ);
+
+                        $shipping = $s->price;
                         
-                        //insertion des données
                         //execute requette preparer
-                        $insert = $bdd->prepare("INSERT INTO products (title, description, price, category) VALUES(?, ?, ?, ?)");
-                        $insert->execute(array($title, $description, $price, $category));// probleme
+                        $insert = $bdd->prepare("INSERT INTO products (title, description, price, category, weight, shipping) VALUES(?, ?, ?, ?, ?, ?)");
+                        $insert->execute(array($title, $description, $price, $category, $weight, $shipping));
 
                     }else{
 
@@ -132,6 +141,7 @@
 
             ?>
                 <!-- Formulaire -->
+                <div style="text-align:center;">
                 <form action="" method="post" enctype="multipart/form-data">
                 <h3>Titre du produit :</h3><input type="text" name="title" />
                 <h3>Description du produit :</h3><textarea name="description"></textarea>
@@ -157,10 +167,32 @@
                 ?>
                 
                 </select><br /><br />
+                <!-- integration du poid-->
+                <h3>Poids Plus de :</h3><select name="weight">
+
+                <?php 
+                    
+                    $select=$bdd->query("SELECT * FROM weights");
+
+                    while($s = $select->fetch(PDO::FETCH_OBJ)){
+
+                        ?>
+
+                        <option><?php echo $s->name; ?></option>
+
+                        <?php
+
+
+                    }
+
+                ?>
+                
+                
+                </select><br/><br/>
                 <input type="submit" name="submit" />
 
                 </form>
-
+            </div>        
             <?php
 
             }else if ($_GET['action']=='modifyanddelete'){ // Action de modification où de suppression
@@ -313,6 +345,65 @@
                 $delete->execute(array($id));
 
                 header('Location: admin.php?action=modifyanddelete_category');
+            // Options de frais de port poids-prix    
+            }else if($_GET['action']=='options'){
+
+                ?>
+                <div style="text-align:center;">
+                <h2>Frais de ports :</h2><br/>
+                <h3>Options de poids :(plus de)</h3>
+                </div>
+                <?php
+                $select = $bdd->query("SELECT * FROM weights");
+
+                while($s=$select->fetch(PDO::FETCH_OBJ)){
+
+                    ?>
+                    <div style="text-align:center;">
+                    <form action="" methode="post">
+                    <input type="text" name="weight" value="<?php echo $s->name;?>"/><a href="?action=modify_weight&amp;name=<?php echo $s->name; ?>">  Modifier</a>
+                    </form>
+                    </div>
+                    <?php
+
+
+                }
+            }else if ($_GET['action']=='modify_weight'){
+
+                $old_weight = $_GET['name'];
+                $select = $bdd->query("SELECT * FROM weights WHERE name=$old_weight");
+                $s =$select->fetch(PDO::FETCH_OBJ);
+
+                if(isset($_POST['submit'])){
+
+                    
+                    $weight=$_POST['submit'];
+                    $price=$_POST['price'];
+
+                    if($weight&&$price){
+
+                        $update = $bdd->query("UPDATE weights SET name='$weight', price='$price' WHERE name=$old_weight");
+
+                        
+                    }
+
+                }
+
+                ?>
+                <div style="text-align:center;">
+                <h2>Frais de ports :</h2><br/>
+                <h3>Options de poids :(plus de)</h3>
+
+                <form action="" method="post">
+                <h3>Poids (plus de) : </h3><input type="text" name="weight" value="<?php echo $_GET['name']; ?>"/>
+                <h3>Correspond à </h3><input type="text" name="price" value="<?php echo $s->price; ?>"/><h3>€</h3>
+                <input type="submit" name="submit" value="modifier"/>
+                </form>
+                </div>
+                <?php
+
+               
+
 
             }else{
 
