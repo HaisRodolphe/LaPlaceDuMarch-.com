@@ -115,22 +115,30 @@
                         echo'Veuillez rentrer une image';
 
                     }
-
+                    // probléme
                     if($title && $description && $price){
                         //insertion des données dans products
                         $category=$_POST['category'];
-                        $weight=$_POST['weight'];
-
+                        $weight=$_POST['weight'];    
                         $select = $bdd->query("SELECT price FROM weights WHERE name='$weight'");
 
                         $s = $select->fetch(PDO::FETCH_OBJ);
 
                         $shipping = $s->price;
-                        
-                        //execute requette preparer
-                        $insert = $bdd->prepare("INSERT INTO products (title, description, price, category, weight, shipping) VALUES(?, ?, ?, ?, ?, ?)");
-                        $insert->execute(array($title, $description, $price, $category, $weight, $shipping));
 
+                        $old_price = $price;// ancien prix
+                        //Calcule de la TVA
+                        $Price_ttc = $old_price + $shipping;
+                        $select=$bdd->query("SELECT tva FROM products");
+                        $s1 = $select->fetch(PDO::FETCH_OBJ);
+                        $tva = $s1->tva;
+                        $price_ttc = $Price_ttc+($Price_ttc*$tva/100);
+
+                        
+                        //execute requette preparer insertion valeur
+                        $insert = $bdd->prepare("INSERT INTO products (title, description, price, category, weight, shipping, tva, price_ttc) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+                        $insert->execute(array($title, $description, $price, $category, $weight, $shipping, $tva, $price_ttc));
+                    //probléme    
                     }else{
 
                     echo'Veuillez remplir tous les champs';
@@ -204,8 +212,10 @@
 
                     echo $s->title;//afficher les articles et les liens pour supprimer ou modifier un article
                     ?>
+                    
                     <a href="?action=modify&amp;id=<?php echo $s->id; ?>">Modifier</a>
                     <a href="?action=delete&amp;id=<?php echo $s->id; ?>">Supprimer</a><br/><br/>
+                    
                     <?php
 
                 }
@@ -368,6 +378,37 @@
 
 
                 }
+                // Integration de la TVA
+                $select=$bdd->query("SELECT tva FROM products"); //Appel de la tva dans products
+
+                $s = $select->fetch(PDO::FETCH_OBJ);
+
+                if(isset($_POST['submit2'])){ //Alors quand tu appuis sur submit2
+
+                    $tva=$_POST['tva'];//variable TVA
+
+                    if($tva){ //Alors $tva
+
+                        //execute requette preparer
+                        $update=$bdd->prepare("UPDATE products SET tva=?"); // je prépare ma requéte et je la met à jours
+                        $update->execute(array($tva)); // j'excute avec les nouvelles données
+
+
+                    }
+
+
+                }
+
+                ?>
+                <div style="text-align:center;">
+                <h3>TVA :</h3>
+                <form action="" method="post"/>
+                <input type="texte" name="tva" value="<?php echo $s->tva;?>"/>
+                <input type="submit" name="submit2" value="Modifier"/>
+                </form>
+                </div>
+                <?php
+
             }else if ($_GET['action']=='modify_weight'){
 
                 $old_weight = $_GET['name'];
@@ -413,13 +454,16 @@
 
         }else{
 
-            die('Une erreur s\'est produite.');
+            die('Bienvenue!');
             
         }
 
     }else{
-            header('Location: ../index.php');
-    }
+
+        die('Une erreur s\'est produite.');
+        header('Location: ../index.php');
+        
+    }    
        
 ?>
 
