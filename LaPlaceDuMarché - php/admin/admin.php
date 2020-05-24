@@ -43,9 +43,10 @@
                 // Test submit
                 if(isset($_POST['submit'])){
                     //variables
-                    $title = $_POST['title'];
+                    $stock=$_POST['stock'];
+                    $title=$_POST['title'];
                     $description = $_POST['description'];
-                    $price = $_POST['price'];
+                    $price=$_POST['price'];
 
                     // gestion insertion image
                     $img = $_FILES['img']['name'];
@@ -116,7 +117,7 @@
 
                     }
                     // probléme
-                    if($title && $description && $price){
+                    if($title && $description && $price && $stock){
                         //insertion des données dans products
                         $category=$_POST['category'];
                         $weight=$_POST['weight'];    
@@ -128,7 +129,7 @@
 
                         $old_price = $price;// ancien prix
                         //Calcule de la TVA
-                        $Price_ttc = $old_price + $shipping;
+                        $Price_ttc = $old_price + $shipping;//Ancien prix + le prix de la livraison.
                         $select=$bdd->query("SELECT tva FROM products");
                         $s1 = $select->fetch(PDO::FETCH_OBJ);
                         $tva = $s1->tva;
@@ -136,8 +137,8 @@
 
                         
                         //execute requette preparer insertion valeur
-                        $insert = $bdd->prepare("INSERT INTO products (title, description, price, category, weight, shipping, tva, price_ttc) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-                        $insert->execute(array($title, $description, $price, $category, $weight, $shipping, $tva, $price_ttc));
+                        $insert = $bdd->prepare("INSERT INTO products (title, description, price, category, weight, shipping, tva, price_ttc, stock) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        $insert->execute(array($title, $description, $price, $category, $weight, $shipping, $tva, $price_ttc, $stock));
                     //probléme    
                     }else{
 
@@ -197,6 +198,7 @@
                 
                 
                 </select><br/><br/>
+                <h3>Stock :</h3><input type="text" name="stock"/>
                 <input type="submit" name="submit" />
 
                 </form>
@@ -229,13 +231,14 @@
 
                 $data = $select->fetch(PDO::FETCH_OBJ);// Recuperation des données
                 ?>
+                <div style="text-align:center;">
                 <!-- Formulaire -->
                 <form action="" method="post">
                 <h3>Titre du produit :</h3><input value="<?php echo $data->title; ?>" type="text" name="title" />
                 <h3>Description du produit :</h3><textarea name="description"><?php echo $data->description; ?></textarea>
                 <h3>Prix :</h3><input value="<?php echo $data->price; ?>" type="text" name="price" /><br/><br/>
+                <h3>Stock :</h3><input value="<?php echo $data->stock; ?>" type="text" name="stock" /><br/><br/>
                 <h3>Categorie :</h3><select name="category">
-
                 <?php $select=$bdd->query("SELECT * FROM category");
 
                     while($s = $select->fetch(PDO::FETCH_OBJ)){
@@ -251,6 +254,7 @@
 
                 ?>
                 <input type="submit" name="submit" value="modifier"/>
+                </div>    
                 <?php
                 // Action de modification
                 if(isset($_POST['submit'])){ //Quand j'appuie sur submit
@@ -260,10 +264,11 @@
                     $description=$_POST['description'];// poste dans le formulaire
                     $price=$_POST['price'];// poste dans le formulaire
                     $category=$_POST['category'];
+                    $stock=$_POST['stock']; //Quantité en stock
 
                     //execute requette preparer
-                    $update=$bdd->prepare("UPDATE products SET title=?, description=?, price=?, category=? WHERE id=?"); // je prépare ma requéte et je la met à jours
-                    $update->execute(array($title, $description, $price, $category, $id)); // j'excute avec les nouvelles données
+                    $update=$bdd->prepare("UPDATE products SET title=?, description=?, price=?, category=?, stock=? WHERE id=?"); // je prépare ma requéte et je la met à jours
+                    $update->execute(array($title, $description, $price, $category, $stock, $id)); // j'excute avec les nouvelles données
                     
                     header('Location: admin.php?action=mofyanddelete');
                 

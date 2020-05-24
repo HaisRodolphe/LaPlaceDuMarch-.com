@@ -89,6 +89,9 @@
 				<h1><?php echo $s->title; ?></h1>
 				<h6><?php echo $description_finale; ?></h6>
 				<h4><?php echo $s->price; ?> €</h4>
+				<h4>Stock :<?php echo $s->stock; ?> Qu/Kg</h4>
+				<?php if ($s->stock!=0){?><a href="panier.php?action=ajout&amp;1=<?php echo $s->titel; ?>$amp;q=1&amp;p=<?php echo $s->price; ?>">Ajouter au pannier</a><?php }else{echo'<h5 Stock style="color:red;">Stock épuisé !</h5>';} ?>
+
 				</div><br/>
 
 				<?php
@@ -129,6 +132,7 @@
 												<div class="pricing">
 													<h6><?php echo $description_finale; ?></h6>
 													<p class="price"><span><h4><?php echo $s->price; ?> €</h4></span></p>
+													<h4>Stock :</h4> <p class="stock"><span><h4><?php echo $s->stock; ?> Qu/Kg</h4></span></p>
 												</div>
 											</div>
 											<div class="bottom-area d-flex px-3">
@@ -138,7 +142,10 @@
 														<span><i class="ion-ios-menu"></i></span>
 													</a>
 													<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-														<span><i class="ion-ios-cart"></i></span>
+
+													<?php if ($s->stock!=0){?><span href="panier.php?action=ajout&amp;1=<?php echo $s->titel; ?>
+														$amp;q=1&amp;p=<?php echo $s->price; ?>"><i class="ion-ios-cart"></i></span><?php }
+														else{echo'<h7 Stock style="color:red;">Rupture!</h7>';} ?>
 													</a>
 													<a href="#" class="heart d-flex justify-content-center align-items-center ">
 														<span><i class="ion-ios-heart"></i></span>

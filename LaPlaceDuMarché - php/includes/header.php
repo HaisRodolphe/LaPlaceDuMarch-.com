@@ -89,6 +89,7 @@
 							aria-haspopup="true" aria-expanded="false">Shop</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
 							<a class="dropdown-item" href="shop.php">Shop</a>
+							<a class="dropdown-item" href="boutique1.php">Shop1</a>
 							<a class="dropdown-item" href="wishlist.php">Wishlist</a>
 							<a class="dropdown-item" href="product-single.php">Single Product</a>
 							<a class="dropdown-item" href="cart.php">Cart</a>

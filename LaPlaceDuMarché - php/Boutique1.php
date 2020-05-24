@@ -25,6 +25,7 @@
         <h1><?php echo $s->title; ?></h1>
         <h6><?php echo $description_finale; ?></h6>
         <h4><?php echo $s->price; ?> €</h4>
+        <h4>Stock :<?php echo $s->stock; ?> Qt ou Kg</h4>
         </div><br/>
 
         <?php
@@ -87,42 +88,9 @@
 			<a href="?show=<?php echo $s->title;?>"><h2><?php echo $s->title; ?></h2></a><!--selection-->
 			<h6><?php echo $description_finale; ?></h6>
 			<h4><?php echo $s->price; ?> €</h4>
-            <a href="">Ajouter au pannier</a>
+            <h4>Stock :<?php echo $s->stock; ?> Qt ou Kg</h4>
+            <?php if ($s->stock!=0){?><a href="panier.php?action=ajout&amp;1=<?php echo $s->titel; ?>$amp;q=1&amp;p=<?php echo $s->price; ?>">Ajouter au pannier</a><?php }else{echo'<h5 Stock style="color:red;">Stock épuisé !</h5>';} ?>
 			<br/>
-
-            <div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-                <a href="?show=<?php echo $s->title;?>" class="img-prod text-center"><img class="img-fluid" src="admin/images/<?php echo $s->title; ?>.jpg"
-							alt="Colorlib Template"/>
-						<div class="overlay"></div>
-					</a>
-					<div class="text py-3 pb-4 px-3 text-center">
-						<a href="?show=<?php echo $s->title;?>"><h2><?php echo $s->title; ?></h2></a>
-						<div class="d-flex">
-							<div class="pricing">
-                                <h6><?php echo $description_finale; ?></h6>
-								<p class="price"><span><h4><?php echo $s->price; ?> €</h4></span></p>
-							</div>
-						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#"
-									class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a>
-								<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a>
-								<a href="#" class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
 			<?php
 		}	
 		
