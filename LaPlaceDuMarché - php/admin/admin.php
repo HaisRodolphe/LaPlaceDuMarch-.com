@@ -33,15 +33,15 @@
     
     }
 
-    if(isset($_SESSION['username'])){
+    if(isset($_SESSION[ 'username' ])) {
 
-        if(isset($_GET['action'])){    
+        if(isset($_GET[ 'action' ])) {    
         
             // Test action=add
-            if($_GET['action']=='add'){
+            if ($_GET[ 'action' ]== 'add' ) {
 
                 // Test submit
-                if(isset($_POST['submit'])){
+                if (isset($_POST[ 'submit' ])) {
                     //variables
                     $stock=$_POST['stock'];
                     $title=$_POST['title'];
@@ -53,9 +53,9 @@
 
                     $img_tmp = $_FILES['img']['tmp_name'];
 
-                    if(!empty($img_tmp)){
+                    if (!empty( $img_tmp )) {
 
-                        $image = explode('.' ,$img);
+                        $image = explode('.', $img);
 
                         $image_ext = end($image);
 
