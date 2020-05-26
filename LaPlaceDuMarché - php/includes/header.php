@@ -16,37 +16,7 @@
 	}
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-    <head>
-        <title>La Place Du Marché</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-            rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-
-        <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-        <link rel="stylesheet" href="css/animate.css">
-
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-        <link rel="stylesheet" href="css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="css/magnific-popup.css">
-
-        <link rel="stylesheet" href="css/aos.css">
-
-        <link rel="stylesheet" href="css/ionicons.min.css">
-
-        <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-        <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-        <link rel="stylesheet" href="css/flaticon.css">
-        <link rel="stylesheet" href="css/icomoon.css">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
     <!-- nav -->
     <header>
     <body class="goto-here">
@@ -101,13 +71,13 @@
 					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
+					<li class="nav-item cta cta-colored"><a href="panier.php" class="nav-link"><span
+								class="icon-shopping_cart"></span>[0]</a></li>			
 					<li class="nav-item"><a href="admin/index.php" class="nav-link">Connection</a></li>
 					<li class="nav-item"><a href="conditions_generales_de_vente.php" class="nav-link">Conditions generales de vente</a></li>
-
 				</ul>
 			</div>
 		</div>
 	</nav>
     </header>
 
-</html>
