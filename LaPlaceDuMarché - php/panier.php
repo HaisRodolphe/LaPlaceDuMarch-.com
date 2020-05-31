@@ -93,9 +93,11 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
                 ?>    
                 <tr>
 
-                    <td><br/><?php echo $_SESSION['panier']['libelleProduit'][$i];?></td>
+                    <td><br/><?php echo $_SESSION['panier']['libelleProduit'][$i]; ?></td>
                     <td><br/><?php echo $_SESSION['panier']['prixProduit'][$i];?></td>
-                    <td><br/><input name="q[]" value="<?php echo $_SESSION['panier']['qteProduit'][$i];?> " size="5" /></td>
+                    <td><br/><input name="q[]" value="<?php echo $_SESSION['panier']['qteProduit'][$i];?> " size="10" /></td>
+                    <!--<br /><b>Notice</b>:  Undefined offset: 1 in <b>C:\laragon\www\LaPlaceDuMarché.com\
+                        LaPlaceDuMarché - php\panier.php</b> on line <b>98</b><br /> -->
                     <td><br/><?php echo $_SESSION['panier']['tva'][$i]." %"; ?></td>
                     <td><br/><a herf="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]);?>">X</a></td>
 

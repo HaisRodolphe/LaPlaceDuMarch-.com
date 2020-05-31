@@ -25,7 +25,7 @@ function creationPanier(){
         $select = $db->query("SELECT title FROM products");
         $libelleProduit = $select->fetch(PDO::FETCH_OBJ);
         $_SESSION['panier']['title'] = $libelleProduit->title;
-
+        
         $_SESSION['panier']['qteProduit'] = array();
         $_SESSION['panier']['prixProduit'] = array();
         $_SESSION['panier']['verrou'] = false;
