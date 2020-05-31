@@ -24,6 +24,7 @@ if($action !== null)
 
     //On traite $q qui peut être un entier simple ou un tableau d'entiers
     if(is_array($q)){
+        
     $QteArticle = array();  
     $i = 0;
     foreach($q as $contenu){
@@ -78,7 +79,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
         <?php
         if(isset($_GET['deletpanier']) && $_GET['deletpanier'] == true)
         {
-          suprimerPanier();
+          supprimerPanier();
         }
 
         if(creationPanier())
