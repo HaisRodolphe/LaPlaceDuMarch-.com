@@ -15,6 +15,7 @@ function creationPanier(){
     }
 
     if(!isset($_SESSION['panier'])){
+        
         $_SESSION['panier']=array();
         $_SESSION['panier']['libelleProduit'] = array();
         $_SESSION['panier']['qteProduit'] = array();
@@ -22,7 +23,7 @@ function creationPanier(){
         $_SESSION['panier']['verrou'] = false;
         $select = $db->query("SELECT tva FROM products");
         $data = $select->fetch(PDO::FETCH_OBJ);
-        $_SESSION['panier']['tva'] = $data->$tva;
+        $_SESSION['panier']['tva'] = $data->tva;
 
 
     }
@@ -59,7 +60,7 @@ function ajouterArticle($libelleProduit,$qteProduit,$prixProduit){
 
 function modifierQteArticle($libelleProduit,$qteProduit){
     // Si le panier éxiste
-    if (creationPanier() && !isVerrouille())
+    if (creationPanier() && !isVerouille())
     {
         // Si la quantité est positive on modifie sinon on supprime l'article
         if($qteProduit > 0)
@@ -74,7 +75,7 @@ function modifierQteArticle($libelleProduit,$qteProduit){
 
         }
         else{
-        supprimerArticle($libelleProduit);
+        suprimerArticle($libelleProduit);
         }
 
     }

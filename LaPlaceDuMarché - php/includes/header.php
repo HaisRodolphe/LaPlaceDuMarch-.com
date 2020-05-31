@@ -1,7 +1,5 @@
 <?php
 
-	session_start();
-	// Connection à la base de donnée
 	try{
 
 		$bdd = new PDO('mysql:host=localhost;dbname=laplacedumarche;charset=utf8', 'root', '',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));// les erreurs lanceront des exceptions
@@ -72,7 +70,9 @@
 					<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span
 								class="icon-shopping_cart"></span>[0]</a></li>
 					<li class="nav-item cta cta-colored"><a href="panier.php" class="nav-link"><span
-								class="icon-shopping_cart"></span>[0]</a></li>			
+								class="icon-shopping_cart"></span>[0]</a></li>
+					<li class="nav-item cta cta-colored"><a href="panier1.php" class="nav-link"><span
+								class="icon-shopping_cart"></span>[0]</a></li>						
 					<li class="nav-item"><a href="admin/index.php" class="nav-link">Connection</a></li>
 					<li class="nav-item"><a href="conditions_generales_de_vente.php" class="nav-link">Conditions generales de vente</a></li>
 				</ul>
