@@ -145,7 +145,7 @@ function MontantGlobalTva(){
 
 }
     
-function supprimerPanier(){
+function suprimerPanier(){
     unset($_SESSION['panier']);
 } 
 
