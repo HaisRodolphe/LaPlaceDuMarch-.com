@@ -21,7 +21,11 @@ function creationPanier(){
     if(!isset($_SESSION['panier'])){
         
         $_SESSION['panier']=array();
-        $_SESSION['panier']['libelleProduit'] = array();
+        //$_SESSION['panier']['libelleProduit'] = array();
+        $select = $db->query("SELECT title FROM products");
+        $libelleProduit = $select->fetch(PDO::FETCH_OBJ);
+        $_SESSION['panier']['title'] = $libelleProduit->title;
+
         $_SESSION['panier']['qteProduit'] = array();
         $_SESSION['panier']['prixProduit'] = array();
         $_SESSION['panier']['verrou'] = false;
@@ -176,7 +180,7 @@ function MontantGlobalTva(){
  * Fonction de suppression du panier
  * @return void
  */    
-function supprimerPanier(){
+function suprimerPanier(){
     unset($_SESSION['panier']);
 } 
 
