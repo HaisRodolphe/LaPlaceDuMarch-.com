@@ -110,6 +110,8 @@ function suprimerArticle($libelleProduit){
     if(creationPanier() && !isVerouille())
     {
         //Nous allons passer par un panier temporaire
+        //https://www.php.net/manual/fr/language.types.array.php
+        //https://www.php.net/manual/fr/language.types.string.php
         $tmp = array();
         $tmp['libelleProduit'] = array();
         $tmp['qteProduit'] = array();

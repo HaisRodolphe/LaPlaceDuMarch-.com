@@ -66,7 +66,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 <form method="post" action="">
     <table width="400">
         <tr>
-            <td colspan="4">Votre panier</td>
+            <td colspan="5">Votre panier</td>
         </tr>
         <tr>
             <td>Libellé produit</td>
@@ -84,26 +84,31 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 
         if(creationPanier())
         {
-            
+            //echo "<pre>";
+            //var_dump($_SESSION); 
+            //echo "</pre>";
             $nbProduits = count($_SESSION['panier']['libelleProduit']);
             if($nbProduits <= 0){
             echo '<br/><p style="font-size:20px; color:red;">Oops, panier vide !</p>';
             }else{
-                for($i = 0; $i<$nbProduits; $i++)
-            
+                for($i = 0; $i<$nbProduits; $i++){
+                //die();La fonction die([optional_string_message]) est une fonction très simple, voire simplissime. Elle a pour but de stopper l'exécution de votre script et d'afficher le message que vous aurez éventuellement spécifié.                  
+                //Son emploi est très courant pour gérer les erreurs de connexion aux bases de données ou les erreurs de chemin lors des inclusions.
                 ?>    
                 <tr>
-
-                    <td><br/><?php echo $_SESSION['panier']['libelleProduit'][$i]; ?></td>
-                    <td><br/><?php echo $_SESSION['panier']['prixProduit'][$i];?></td>
-                    <td><br/><input name="q[]" value="<?php echo $_SESSION['panier']['qteProduit'][$i];?> " size="10" /></td>
+        
+                    <td><br/><?php echo $_SESSION['panier']['libelleProduit'][$i]; ?></td><!--Undefined offset-->
+                    <td><br/><?php echo $_SESSION['panier']['prixProduit'][$i];?></td><!--Undefined offset-->
+                    <td><br/><input name="q[]" value="<?php echo $_SESSION['panier']['qteProduit'][$i]; ?> " size="10" /></td><!--Undefined offset-->
                     <!--<br /><b>Notice</b>:  Undefined offset: 1 in <b>C:\laragon\www\LaPlaceDuMarché.com\
                         LaPlaceDuMarché - php\panier.php</b> on line <b>98</b><br /> -->
-                    <td><br/><?php echo $_SESSION['panier']['tva'][$i]." %"; ?></td>
+                    <td><br/><?php echo $_SESSION['panier']['tva']." %"; ?></td>
                     <td><br/><a herf="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]);?>">X</a></td>
 
                 </tr>
-                <?php } ?>
+                
+                <?php }
+                } ?>
                 <tr>
 
                 <td colspan="2"><br />
@@ -122,7 +127,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
                 </td>
 
                 </tr>
-
+                
                 <?php
                 }  
                 

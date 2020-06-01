@@ -26,8 +26,6 @@
         <h6><?php echo $description_finale; ?></h6>
         <h4><?php echo $s->price; ?> €</h4>
         <h4>Stock :<?php echo $s->stock; ?> Qt ou Kg</h4>
-        <a href="panier.php?action=ajout&amp;l=LIBELLEPRODUIT&amp;q=QUANTITEPRODUIT&amp;p=PRIXPRODUIT" onclick="window.open(this.href, '', 
-        'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Ajouter au panier</a>
         <?php if ($s->stock!=0){ ?><a href="panier.php?action=ajout&amp;l=<?php echo $s->title; ?>&amp;q=1<?php echo $s->stock; ?>&amp;p=<?php echo $s->price; ?>">Ajouter au pannier</a><?php }else{echo'<h5 Stock style="color:red;">Stock épuisé !</h5>';} ?>
         <br/>
 
@@ -40,7 +38,7 @@
 
     if(isset($_GET['category'])){
 
-		$category=$_GET['category'];	
+        $category=$_GET['category'];
 		$select = $bdd->prepare("SELECT * FROM products WHERE category='$category'");
         $select->execute();
         
