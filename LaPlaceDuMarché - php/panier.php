@@ -103,7 +103,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
                     <!--<br /><b>Notice</b>:  Undefined offset: 1 in <b>C:\laragon\www\LaPlaceDuMarché.com\
                         LaPlaceDuMarché - php\panier.php</b> on line <b>98</b><br /> -->
                     <td><br/><?php echo $_SESSION['panier']['tva']." %"; ?></td>
-                    <td><br/><a herf="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]);?>">X</a></td>
+                    <td><br/><a herf="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]);?>">XX</a></td>
 
                 </tr>
                 
