@@ -84,6 +84,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 
         if(creationPanier())
         {
+            
             $nbProduits = count($_SESSION['panier']['libelleProduit']);
             if($nbProduits <= 0){
             echo '<br/><p style="font-size:20px; color:red;">Oops, panier vide !</p>';
