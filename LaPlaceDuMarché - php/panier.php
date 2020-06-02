@@ -1,5 +1,5 @@
 <?php
-session_start();    
+session_start();//Initialisation (et restauration) d'une session    
 require_once('includes/head.php');
 require_once('includes/header.php');
 require_once('includes/sidebar.php');
@@ -97,13 +97,11 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
                 ?>    
                 <tr>
         
-                    <td><br/><?php echo $_SESSION['panier']['libelleProduit'][$i]; ?></td><!--Undefined offset-->
-                    <td><br/><?php echo $_SESSION['panier']['prixProduit'][$i];?></td><!--Undefined offset-->
-                    <td><br/><input name="q[]" value="<?php echo $_SESSION['panier']['qteProduit'][$i]; ?> " size="10" /></td><!--Undefined offset-->
-                    <!--<br /><b>Notice</b>:  Undefined offset: 1 in <b>C:\laragon\www\LaPlaceDuMarché.com\
-                        LaPlaceDuMarché - php\panier.php</b> on line <b>98</b><br /> -->
-                    <td><br/><?php echo $_SESSION['panier']['tva']." %"; ?></td>
-                    <td><br/><a herf="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]);?>">XX</a></td>
+                    <td><br/><?php echo $_SESSION['panier']['libelleProduit'][$i]; ?></td><!--Lecture d'une variable de session tableau-->
+                    <td><br/><?php echo $_SESSION['panier']['prixProduit'][$i];?></td><!--Lecture d'une variable de session tableau-->
+                    <td><br/><input name="q[]" value="<?php echo $_SESSION['panier']['qteProduit'][$i]; ?> " size="10" /></td><!--Lecture d'une variable de session tableau-->
+                    <td><br/><?php echo $_SESSION['panier']['tva']." %"; ?></td><!--Lecture d'une variable de session-->
+                    <td><br/><a herf="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]);?>">XX</a></td><!--Lecture d'une variable de session-->
 
                 </tr>
                 

@@ -17,10 +17,10 @@ function creationPanier(){
 
         die('Une erreur est survenue');
     }
-
+    //Le tableau $_SESSION (panier)
     if(!isset($_SESSION['panier'])){
         
-        $_SESSION['panier']=array();
+        $_SESSION['panier']=array();//L'écriture de session
         $_SESSION['panier']['libelleProduit'] = array();
         $_SESSION['panier']['qteProduit'] = array();
         $_SESSION['panier']['prixProduit'] = array();
