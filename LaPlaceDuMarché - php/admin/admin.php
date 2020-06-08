@@ -4,6 +4,11 @@
     session_start();
 ?>
 
+<?php
+    include('phpqrcode/qrlib.php'); //On inclut la librairie au projet
+    $lien='https://www.243tech.com'; // Vous pouvez modifier le lien selon vos besoins
+    QRcode::png($lien, 'image-qrcode.png'); // On crée notre QR Code
+?>
 <link rel="stylesheet" href="../style/bootstrap.css" type="text/css">
 <div style="text-align:center;">
 <h1>Bienvenue, <?php echo $_SESSION['username']; ?></h1>
