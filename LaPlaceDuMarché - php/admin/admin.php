@@ -17,6 +17,14 @@
 <a href="?action=modifyanddelete_category">Modifier / supprimer une categorie </a><br/><br/>
 
 <a href="?action=options">Options</a><br/><br/>
+
+<?php
+//Créer un QR Code
+include('phpqrcode/qrlib.php'); //On inclut la librairie au projet
+$lien='https://www.243tech.com'; // Vous pouvez modifier le lien selon vos besoins
+QRcode::png($lien, 'image-qrcode.png'); // On crée notre QR Code
+?>
+
 </div>
 
 <?php

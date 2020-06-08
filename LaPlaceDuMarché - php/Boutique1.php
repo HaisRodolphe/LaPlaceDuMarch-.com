@@ -1,4 +1,3 @@
-
 <?php
     require_once('includes/header.php');
     require_once('includes/sidebar.php');
@@ -34,14 +33,11 @@
 
 
     }else{
-
-
     if(isset($_GET['category'])){
 
         $category=$_GET['category'];
 		$select = $bdd->prepare("SELECT * FROM products WHERE category='$category'");
         $select->execute();
-        
 			
 		while($s=$select->fetch(PDO::FETCH_OBJ)){
 
