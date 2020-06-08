@@ -198,7 +198,7 @@ function isVerouille(){
  * Compte le nombre d'articles différents dans le panier
  * @return int
  */    
-function compterArticle()
+function compterArticles()
 {
     if(isset($_SESSION['panier'])){
     return count($_SESSION['panier']['libelleProduit']);
@@ -208,19 +208,52 @@ function compterArticle()
 
 }
 
-function CalulFraisPort()
-{
-    $erreur = false;
+function CalulFraisPort(){
+
+    try{
+
+        $db = new PDO('mysql:host=localhost;dbname=laplacedumarche', 'root', '');
+        $db->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);// les noms des champs seront en caractère minuscules
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//les erreurs lanceront des exceptions
+    }
+
+    catch(Exception $e){
+
+        die('Une erreur est survenue');
+    }
+
+    
     $weight_product = "";
     $shipping = "";
+    $max = 200;
 
-    for($i = 0; $i < compterArticle(); $i++){
 
-        for($j = 0; $j < ($_SESSION['panier']['qteProduit'][$i]); $j++){
-            echo "";
+    for($i = 0; $i < compterArticles(); $i++){
+
+        for($j = 0; $j < $_SESSION['panier']['qteProduit'][$i]; $j++){
+            
+            $title = $_SESSION['panier']['libelleProduit'][$i];
+            $select = $db->query("SELECT weight FROM products WHERE title='$title'");
+            $result = $select->fetch(PDO::FETCH_OBJ);
+            $weight = $result->weight;
+
+            $weight_product += $weight*compterArticles();
+
+            $select = $db->query("SELECT * FROM weights WHERE name >= 'weight_product'");
+            $result2 = $select->fetch(PDO::FETCH_OBJ);
+
+
+            $shipping = $result2->price;
 
         }
     }
+    
+
+    if($weight_product>$max){
+
+        die('<br/><p style="color:red;">Veuillez baisser la quantité</p>');
+    }
+
     return $shipping;
 
 

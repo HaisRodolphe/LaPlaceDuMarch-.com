@@ -101,7 +101,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
                     <td><br/><?php echo $_SESSION['panier']['prixProduit'][$i];?></td><!--Lecture d'une variable de session tableau-->
                     <td><br/><input name="q[]" value="<?php echo $_SESSION['panier']['qteProduit'][$i]; ?> " size="10" /></td><!--Lecture d'une variable de session tableau-->
                     <td><br/><?php echo $_SESSION['panier']['tva']." %"; ?></td><!--Lecture d'une variable de session-->
-                    <td><br/><a herf="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]);?>">XX</a></td><!--Lecture d'une variable de session-->
+                    <td><br/><a href="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]);?>">X</a></td><!--Lecture d'une variable de session-->
 
                 </tr>
                 
