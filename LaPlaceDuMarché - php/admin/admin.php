@@ -183,7 +183,7 @@
                 
                 </select><br /><br />
                 <!-- integration du poid-->
-                <h3>Poids Plus de :</h3><select name="weight">
+                <h3>Poids: moins de </h3><select name="weight">
 
                 <?php 
                     
