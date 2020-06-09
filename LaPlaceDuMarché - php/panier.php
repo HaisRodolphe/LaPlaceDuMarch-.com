@@ -3,7 +3,10 @@ session_start();//Initialisation (et restauration) d'une session
 require_once('includes/head.php');
 require_once('includes/header.php');
 require_once('includes/sidebar.php');
-include_once('includes/functions_panier.php');
+require_once('includes/functions_panier.php');
+require_once('includes/paypal.php');
+
+
 
 $erreur = false;
 
@@ -113,6 +116,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
                     <p>Total : <?php echo MontantGlobal()."€"; ?></p><br />
                     <p>Total avec TVA : <?php echo MontantGlobalTVA()."€"; ?></p>
                     <p>Calcule des frais de port : <?php echo CalulFraisPort()."€"; ?></p>
+                    <a href="#">Payer la commande</a>
                 </td>
 
                 </tr>

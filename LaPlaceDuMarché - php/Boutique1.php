@@ -25,7 +25,7 @@
         <h6><?php echo $description_finale; ?></h6>
         <h4><?php echo $s->price; ?> €</h4>
         <h4>Stock :<?php echo $s->stock; ?> Qt ou Kg</h4>
-        <?php if ($s->stock!=0){ ?><a href="panier.php?action=ajout&amp;l=<?php echo $s->title; ?>&amp;q=1<?php echo $s->stock; ?>&amp;p=<?php echo $s->price; ?>">Ajouter au pannier</a><?php }else{echo'<h5 Stock style="color:red;">Stock épuisé !</h5>';} ?>
+        <?php if ($s->stock!=0){ ?><a href="panier.php?action=ajout&amp;l=<?php echo $s->title; ?>&amp;q=1<?php echo $s->weight; ?>&amp;p=<?php echo $s->price; ?>">Ajouter au pannier</a><?php }else{echo'<h5 Stock style="color:red;">Stock épuisé !</h5>';} ?>
         <br/>
 
         <?php
@@ -58,7 +58,7 @@
 			<h6><?php echo $description_finale; ?></h6>
 			<h4><?php echo $s->price; ?> €</h4>
             <h4>Stock :<?php echo $s->stock; ?> Qt ou Kg</h4>
-            <?php if ($s->stock!=0){ ?><a href="panier.php?action=ajout&amp;l=<?php echo $s->title; ?>&amp;q=1<?php echo $s->stock; ?>&amp;p=<?php echo $s->price; ?>">Ajouter au pannier</a><?php }else{echo'<h5 Stock style="color:red;">Stock épuisé !</h5>';} ?>
+            <?php if ($s->stock!=0){ ?><a href="panier.php?action=ajout&amp;l=<?php echo $s->title; ?>&amp;q=1<?php echo $s->weight; ?>&amp;p=<?php echo $s->price; ?>">Ajouter au pannier</a><?php }else{echo'<h5 Stock style="color:red;">Stock épuisé !</h5>';} ?>
 			<br/>
 			<?php
 		}	
