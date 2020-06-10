@@ -221,11 +221,12 @@ function CalulFraisPort(){
 
         die('Une erreur est survenue');
     }
-
-    
+    $title=$_POST['title'];
+    $weight=$_GET['weight'];
     $weight_product = "";
     $shipping = "";
     $max = 200;
+    
 
 
     for($i = 0; $i < compterArticles(); $i++){
@@ -237,9 +238,9 @@ function CalulFraisPort(){
             $result = $select->fetch(PDO::FETCH_OBJ);
             $weight = $result->weight;
 
-            $weight_product += $weight*compterArticles();
+            $weight_product += $weight*compterArticles();//probléme
 
-            $select = $db->query("SELECT * FROM weights WHERE name >= 'weight_product'");
+            $select = $db->query("SELECT * FROM weights WHERE name >= '$weight_product'");
             $result2 = $select->fetch(PDO::FETCH_OBJ);
 
 
