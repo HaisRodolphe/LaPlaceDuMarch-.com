@@ -94,43 +94,55 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
             if($nbProduits <= 0){
             echo '<br/><p style="font-size:20px; color:red;">Oops, panier vide !</p>';
             }else{
+
+                $total = MontantGlobal();
+                $totaltva = MontantGlobalTva();
+                $shipping = CalulFraisPort();
+                $paypal = new Paypal();
+
+                $params = array(
+                    
+
+
+                );
+
                 for($i = 0; $i<$nbProduits; $i++){
                 //die();La fonction die([optional_string_message]) est une fonction très simple, voire simplissime. Elle a pour but de stopper l'exécution de votre script et d'afficher le message que vous aurez éventuellement spécifié.                  
                 //Son emploi est très courant pour gérer les erreurs de connexion aux bases de données ou les erreurs de chemin lors des inclusions.
-                ?>    
-                <tr>
-        
-                    <td><br/><?php echo $_SESSION['panier']['libelleProduit'][$i]; ?></td><!--Lecture d'une variable de session tableau-->
-                    <td><br/><?php echo $_SESSION['panier']['prixProduit'][$i];?></td><!--Lecture d'une variable de session tableau-->
-                    <td><br/><input name="q[]" value="<?php echo $_SESSION['panier']['qteProduit'][$i]; ?> " size="10" /></td><!--Lecture d'une variable de session tableau-->
-                    <td><br/><?php echo $_SESSION['panier']['tva']." %"; ?></td><!--Lecture d'une variable de session-->
-                    <td><br/><a href="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]);?>">X</a></td><!--Lecture d'une variable de session-->
+                    ?>    
+                    <tr>
+            
+                        <td><br/><?php echo $_SESSION['panier']['libelleProduit'][$i]; ?></td><!--Lecture d'une variable de session tableau-->
+                        <td><br/><?php echo $_SESSION['panier']['prixProduit'][$i];?></td><!--Lecture d'une variable de session tableau-->
+                        <td><br/><input name="q[]" value="<?php echo $_SESSION['panier']['qteProduit'][$i]; ?> " size="10" /></td><!--Lecture d'une variable de session tableau-->
+                        <td><br/><?php echo $_SESSION['panier']['tva']." %"; ?></td><!--Lecture d'une variable de session-->
+                        <td><br/><a href="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]);?>">X</a></td><!--Lecture d'une variable de session-->
 
-                </tr>
-                
-                <?php }
-                } ?>
-                <tr>
+                    </tr>
+                    
+                    <?php }
+                    } ?>
+                    <tr>
 
-                <td colspan="2"><br />
-                    <p>Total : <?php echo MontantGlobal()."€"; ?></p><br />
-                    <p>Total avec TVA : <?php echo MontantGlobalTVA()."€"; ?></p>
-                    <p>Calcule des frais de port : <?php echo CalulFraisPort()."€"; ?></p>
-                    <a href="#">Payer la commande</a>
-                </td>
+                    <td colspan="2"><br />
+                        <p>Total : <?php echo $total."€"; ?></p><br />
+                        <p>Total avec TVA : <?php echo MontantGlobalTVA()."€"; ?></p>
+                        <p>Calcule des frais de port : <?php echo $shipping."€"; ?></p>
+                        <a href="#">Payer la commande</a>
+                    </td>
 
-                </tr>
-                <tr>
+                    </tr>
+                    <tr>
 
-                <td colspan="4">
-                    <input type="submit" value="rafraichir" />
-                    <input type="hidden" name="action" value="refresh" />
-                    <a href="?deletepanier=true">Suprime le panier</a>
-                </td>
+                    <td colspan="4">
+                        <input type="submit" value="rafraichir" />
+                        <input type="hidden" name="action" value="refresh" />
+                        <a href="?deletepanier=true">Suprime le panier</a>
+                    </td>
 
-                </tr>
-                
-                <?php
+                    </tr>
+                    
+                    <?php
                 }  
                 
             }
