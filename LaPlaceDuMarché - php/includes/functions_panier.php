@@ -249,6 +249,7 @@ function CalulFraisPort(){
         }
     }
     
+    
 
     if($weight_product>$max){
 
