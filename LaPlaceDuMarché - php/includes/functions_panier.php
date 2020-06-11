@@ -221,10 +221,10 @@ function CalulFraisPort(){
 
         die('Une erreur est survenue');
     }
-    $title=$_POST['title'];
-    $weight=$_GET['weight'];
-    $weight_product = $_POST['weight_product'];
-    $shipping = $_POST['shipping'];
+    
+    
+    $weight_product = "";
+    $shipping = "";
     $max = 200;
     
 

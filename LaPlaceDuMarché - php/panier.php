@@ -96,15 +96,35 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
             }else{
 
                 $total = MontantGlobal();
-                $totaltva = MontantGlobalTva();
+                $totaltva = MontantGlobalTVA();
                 $shipping = CalulFraisPort();
                 $paypal = new Paypal();
-
+                
                 $params = array(
-                    
+                    'RETURNURL' => 'http://localhost/laplacedumarche/process.php',
+                    'CANCELURL' =>  'http://localhost/laplacedumarche/process.php',
 
+                    'PAYMENTREQUEST_0_AMT' => $totaltva + $shipping,
+                    'PAYMENTREQUEST_0_CURRENCYCODE' => 'EUR',
+                    'PAYMENTREQUEST_0_SHIPPINGANT' => $shipping,
+                    'PAYMENTREQUEST_0_ITEMAMT' => $totaltva,
 
                 );
+
+                $response = $paypal->request('SetExpressCheckout', $params);
+
+                if($response){
+
+                    $paypal = 'https://www.sandbox.paypal.com/webscr?cmd=_Express-checkout&useraction=commit&token='.$response['TOKEN'].'';
+
+
+                }else{
+
+                    var_dump($paypal->errors);
+                    die('erreur');
+                    
+
+                }
 
                 for($i = 0; $i<$nbProduits; $i++){
                 //die();La fonction die([optional_string_message]) est une fonction très simple, voire simplissime. Elle a pour but de stopper l'exécution de votre script et d'afficher le message que vous aurez éventuellement spécifié.                  
@@ -126,9 +146,9 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 
                     <td colspan="2"><br />
                         <p>Total : <?php echo $total."€"; ?></p><br />
-                        <p>Total avec TVA : <?php echo MontantGlobalTVA()."€"; ?></p>
+                        <p>Total avec TVA : <?php echo $totaltva."€"; ?></p>
                         <p>Calcule des frais de port : <?php echo $shipping."€"; ?></p>
-                        <a href="#">Payer la commande</a>
+                        <a href="<?php echo $paypal; ?>">Payer la commande</a>
                     </td>
 
                     </tr>
